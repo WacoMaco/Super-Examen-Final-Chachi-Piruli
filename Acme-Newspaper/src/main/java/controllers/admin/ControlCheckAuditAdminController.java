@@ -4,10 +4,13 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import services.AdminService;
 import services.ControlCheckAuditService;
@@ -15,8 +18,11 @@ import services.NewspaperService;
 
 import controllers.AbstractController;
 import domain.Admin;
+import domain.Article;
 import domain.ControlCheckAudit;
 import domain.Newspaper;
+import domain.User;
+import forms.ArticleForm;
 import forms.ControlCheckAuditForm;
 import forms.NewspaperForm;
 
@@ -43,9 +49,9 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		public ModelAndView list(String filter) {
 			ModelAndView result;
 			Admin principal = this.adminService.findByPrincipal();
-
-			result = new ModelAndView("article/list");
-			result.addObject("controlCheckAudits", principal.getControlCheckAudits());
+			Collection<ControlCheckAudit> controlCheckAudits = principal.getControlCheckAudits();
+			result = new ModelAndView("controlCheckAudit/list");
+			result.addObject("controlCheckAudits", controlCheckAudits);
 			result.addObject("principal", principal);
 			return result;
 		}
@@ -64,6 +70,29 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		}
 
 		// Edition ----------------------------------------------------------------
+		
+		
+		@RequestMapping(value = "/edit", method = RequestMethod.GET)
+		public ModelAndView edit(@RequestParam final int controlCheckAuditId, final RedirectAttributes redir) {
+			ModelAndView result;
+			ControlCheckAudit controlCheckAudit;
+			ControlCheckAuditForm controlCheckAuditForm;
+			try {
+				Admin admin = this.adminService.findByPrincipal();
+				article = this.articleService.findOne(articleId);
+				Assert.isTrue(article.getUser().equals(principal));
+				articleForm = this.articleService.reconstructForm(article);
+				result = this.createEditModelAndView(articleForm);
+				result.addObject("article", article);
+			} catch (final Throwable oops) {
+				result = new ModelAndView("redirect:/article/list.do");
+				redir.addFlashAttribute("message", "article.permision");
+
+			}
+
+			return result;
+
+		}
 
 				@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 				public ModelAndView save(final ControlCheckAuditForm controlCheckAuditForm, final BindingResult binding) {

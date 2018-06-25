@@ -54,12 +54,12 @@ public class ControlCheckAuditService {
 		Collection<ControlCheckAudit> toUpdate1,toUpdate2,updated1,updated2;	
 		Admin principal = this.adminService.findByPrincipal();
 		Assert.isTrue(toSave.getCreator().equals(principal));
-		if(toSave.getNewspaper()== null){
-			Assert.isTrue(toSave.getIsDraft()==true);
+		if(toSave.getNewspaper()!= null){
+			Assert.isTrue(toSave.getIsDraft()==false);
 		}
 		if (toSave.getId() != 0){
 		ControlCheckAudit old = this.controlCheckAuditRepository.findOne(toSave.getId());
-		Assert.isTrue(old.getIsDraft()==true);
+		Assert.isTrue(old.getIsDraft()==false);
 		}
 		
 		ControlCheckAudit saved = this.controlCheckAuditRepository.save(toSave);
@@ -69,10 +69,12 @@ public class ControlCheckAuditService {
 		updated1.add(saved);
 		principal.setControlCheckAudits(updated1);
 		
+		if (saved.getNewspaper() != null){
 		toUpdate2 = saved.getNewspaper().getControlCheckAudit();
 		updated2 = new ArrayList<ControlCheckAudit>(toUpdate2);
 		updated2.add(saved);
 		saved.getNewspaper().setControlCheckAudit(updated2);
+		}
 			
 		return saved;
 		}
@@ -89,10 +91,12 @@ public class ControlCheckAuditService {
 		updated1.remove(toDelete);
 		principal.setControlCheckAudits(updated1);
 		
+		if (toDelete.getNewspaper() != null){
 		toUpdate2 = toDelete.getNewspaper().getControlCheckAudit();
 		updated2 = new ArrayList<ControlCheckAudit>(toUpdate2);
 		updated2.remove(toDelete);
 		toDelete.getNewspaper().setControlCheckAudit(updated2);
+		}
 		
 		this.controlCheckAuditRepository.delete(toDelete);
 		
@@ -151,7 +155,7 @@ public class ControlCheckAuditService {
 					binding.rejectValue("controlMoment", "controlCheckAudit.invalid.moment");
 				}
 				
-				if (controlCheckAuditForm.getNewspaper() != null && (controlCheckAuditForm.getIsDraft() == false)){
+				if (controlCheckAuditForm.getNewspaper() == null && (controlCheckAuditForm.getIsDraft() == false)){
 					binding.rejectValue("newspaper", "controlCheckAudit.invalid.newspaper");
 				}
 			

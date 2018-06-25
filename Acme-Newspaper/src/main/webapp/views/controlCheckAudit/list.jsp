@@ -38,11 +38,6 @@
   	 format = "${format}"/>
   	
   	
-  		<!-- description -->
-	<spring:message code="chirp.user"
-		var="userHeader" />
-	<display:column property="user.userAccount.username" title="${userHeader}" />
-
 </display:table>
 
 <spring:message code="datatables.locale.lang" var="tableLang"/>
