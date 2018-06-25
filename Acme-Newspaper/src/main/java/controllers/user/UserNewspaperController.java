@@ -20,11 +20,13 @@ import controllers.AbstractController;
 
 import domain.Advertisement;
 import domain.Article;
+import domain.ControlCheckAudit;
 import domain.Newspaper;
 import domain.User;
 import forms.NewspaperForm;
 
 import services.ArticleService;
+import services.ControlCheckAuditService;
 import services.NewspaperService;
 import services.UserService;
 
@@ -43,7 +45,8 @@ public class UserNewspaperController extends AbstractController{
 	
 	@Autowired
 	private UserService	userService;
-
+	@Autowired
+	private ControlCheckAuditService	controlCheckAuditService;
 
 	// Constructors
 
@@ -96,9 +99,12 @@ public class UserNewspaperController extends AbstractController{
 			advertChoosen = this.newspaperService.findRandomAdvert(newspaper);
 			
 			articles = this.articleService.articlesOfNewspaper(newspaperId);
-
+			Collection<ControlCheckAudit> controlCheckAudits;
+			controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);	
+		
 
 			result = new ModelAndView("newspaper/display");
+			result.addObject("controlCheckAudits", controlCheckAudits);
 			result.addObject("articles", articles);
 			result.addObject("newspaper", newspaper);
 			result.addObject("uri", uri);

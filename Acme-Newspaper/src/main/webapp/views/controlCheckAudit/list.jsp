@@ -28,6 +28,17 @@
 		var="descriptionHeader" />
 	<display:column property="controlDescription" title="${descriptionHeader}"
 		 />
+		 
+	
+	<!-- gauge -->
+	<spring:message code="controlCheckAudit.gauge"
+		var="gauge" />
+		<jstl:if test="${row.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
+		<jstl:if test="${row.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
+		<jstl:if test="${row.gauge == 3 }"> <jstl:set var="color" value="Blue"/> </jstl:if>
+		
+	<display:column style="background:${color}" property="gauge" title="${gauge}"
+		 />
 		
 	
 	<!-- moment --> <!-- format para internacionalizacion -->

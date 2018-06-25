@@ -18,11 +18,13 @@ import controllers.AbstractController;
 
 import domain.Advertisement;
 import domain.Article;
+import domain.ControlCheckAudit;
 import domain.Newspaper;
 import domain.Admin;
 
 import services.AdminService;
 import services.ArticleService;
+import services.ControlCheckAuditService;
 import services.NewspaperService;
 
 
@@ -41,6 +43,9 @@ public class NewspaperAdminController extends AbstractController{
 
 	@Autowired
 	private AdminService	adminService;
+	
+	@Autowired
+	private ControlCheckAuditService	controlCheckAuditService;
 
 
 	// Constructors
@@ -76,6 +81,7 @@ public class NewspaperAdminController extends AbstractController{
 					ModelAndView result;
 					Newspaper newspaper;
 					Collection<Article> articles;
+					Collection<ControlCheckAudit> controlCheckAudits;
 					Advertisement advertChoosen;
 					final Admin principal = this.adminService.findByPrincipal();
 					final String uri = "/admin";
@@ -84,8 +90,10 @@ public class NewspaperAdminController extends AbstractController{
 					newspaper = this.newspaperService.findOne(newspaperId);
 					articles = this.articleService.articlesOfNewspaper(newspaperId);
 					advertChoosen = this.newspaperService.findRandomAdvert(newspaper);
-					
+					controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);
 					result = new ModelAndView("newspaper/display");
+					
+					result.addObject("controlCheckAudits", controlCheckAudits);
 					result.addObject("articles", articles);
 					result.addObject("newspaper", newspaper);
 					result.addObject("uri", uri);

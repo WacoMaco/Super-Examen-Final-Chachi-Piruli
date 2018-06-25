@@ -115,34 +115,38 @@
 
 <h3><spring:message code="controlCheckAudit.audits" /></h3>
 
-<table class="displayStyle">
+<display:table name="controlCheckAudits" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">>
+<spring:message code="controlCheckAudit.title" var="title"/>
+<display:column property="controlTitle" title="${title }"/>
 
-		<tr>
-			<th><spring:message code="controlCheckAudit.title" /></th>
-			<th><spring:message code="controlCheckAudit.description" /></th>
-						<th>  </th>
-		</tr>
+<spring:message code="controlCheckAudit.description" var="description"/>
+<display:column property="controlDescription" title="${description}"/>
 
-<jstl:forEach var="controlCheckAudit" items="${newspaper.controlCheckAudit}">
-		<tr>
-			<th>${controlCheckAudit.controlTitle}</th>
-			<th>${controlCheckAudit.controlDescription}</th>
-						<th> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
-			<spring:message code="controlCheckAudit.display" /> </a>
-		</tr>
+<display:column> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
+			<spring:message code="controlCheckAudit.display" /> </a> </display:column>
+
+
+	<!-- gauge -->
+	<spring:message code="controlCheckAudit.gauge"
+		var="gauge" />
+		<jstl:if test="${row.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
+		<jstl:if test="${row.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
+		<jstl:if test="${row.gauge == 3 }"> <jstl:set var="color" value="Blue"/> </jstl:if>
 		
+	<display:column style="background:${color}" property="gauge" title="${gauge}"
+		 />
+		
+	
+	<!-- moment --> <!-- format para internacionalizacion -->
+ 	<spring:message code="controlCheckAudit.format"
+  	var="format" />
+ 	<spring:message code="controlCheckAudit.moment"
+  	var="momentHeader" />
+ 	<display:column property="controlMoment" title="${momentHeader}"
+  	 format = "${format}"/>
 
 
-
-
-</jstl:forEach>
-</table>
-
-
-
-
-
-
+</display:table>
 
 
 

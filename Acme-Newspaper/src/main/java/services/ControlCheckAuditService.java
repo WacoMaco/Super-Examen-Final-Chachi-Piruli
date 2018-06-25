@@ -65,7 +65,7 @@ public class ControlCheckAuditService {
 		updated1.add(saved);
 		principal.setControlCheckAudits(updated1);
 		
-		if (saved.getNewspaper() != null){
+		if (toSave.getNewspaper() != null){
 		toUpdate2 = saved.getNewspaper().getControlCheckAudit();
 		updated2 = new ArrayList<ControlCheckAudit>(toUpdate2);
 		updated2.add(saved);
@@ -173,5 +173,8 @@ public class ControlCheckAuditService {
 			return res;
 		}
 	
-		
+	public Collection<ControlCheckAudit> SelectPublishedByNewspaper (Integer newspaperId){
+		Collection<ControlCheckAudit> res = this.controlCheckAuditRepository.findPublished(newspaperId);
+		return res;
+	}
 }

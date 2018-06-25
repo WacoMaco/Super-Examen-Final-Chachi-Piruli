@@ -17,11 +17,13 @@ import controllers.AbstractController;
 
 import domain.Advertisement;
 import domain.Article;
+import domain.ControlCheckAudit;
 import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
 
 import services.ArticleService;
+import services.ControlCheckAuditService;
 import services.CustomerService;
 import services.NewspaperService;
 import services.SubscriptionService;
@@ -44,6 +46,8 @@ public class CustomerNewspaperController extends AbstractController{
 	@Autowired
 	private CustomerService	customerService;
 
+	@Autowired
+	private ControlCheckAuditService	controlCheckAuditService;
 
 	// Constructors
 
@@ -107,8 +111,10 @@ public class CustomerNewspaperController extends AbstractController{
 		}
 		
 		advertChoosen = this.newspaperService.findRandomAdvert(newspaper);
+		Collection<ControlCheckAudit> controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);
 
 		result = new ModelAndView("newspaper/display");
+		result.addObject("controlCheckAudits", controlCheckAudits);
 		result.addObject("articles", articles);
 		result.addObject("suscrito", suscrito);
 		result.addObject("newspaper", newspaper);

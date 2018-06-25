@@ -81,6 +81,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 				Admin admin = this.adminService.findByPrincipal();
 				controlCheckAudit = this.controlCheckAuditService.findOne(controlCheckAuditId);
 				Assert.isTrue(controlCheckAudit.getIsDraft()== true);
+				Assert.isTrue(controlCheckAudit.getCreator().equals(admin));
 				controlCheckAuditForm = this.controlCheckAuditService.reconstructForm(controlCheckAudit);
 				result = this.createEditModelAndView(controlCheckAuditForm);
 			} catch (final Throwable oops) {
