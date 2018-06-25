@@ -1,5 +1,7 @@
 package controllers.admin;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdminService;
 import services.ControlCheckAuditService;
+import services.NewspaperService;
 
 import controllers.AbstractController;
 import domain.Admin;
@@ -27,6 +30,9 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		
 		@Autowired
 		AdminService	adminService;
+		
+		@Autowired
+		NewspaperService	newspaperService;
 
 		
 		public ControlCheckAuditAdminController() {
@@ -90,8 +96,11 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		private ModelAndView createEditModelAndView(
 				ControlCheckAuditForm controlCheckAuditForm, String message) {
 			ModelAndView result;
+			
+			Collection<Newspaper> newspapers = this.newspaperService.publishedNewspapers();
 
 			result = new ModelAndView("controlCheckAudit/edit");
+			result.addObject("newspapers", newspapers);
 			result.addObject("controlCheckAuditForm", controlCheckAuditForm);
 			result.addObject("message", message);
 

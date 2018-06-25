@@ -4,9 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,6 +47,7 @@ public class ControlCheckAuditForm extends DomainEntity {
 		this.controlDescription = controlDescription;
 	}
 	@Range(min=1, max=3)
+	@NotNull
 	public Integer getGauge() {
 		return gauge;
 	}
@@ -61,7 +68,7 @@ public class ControlCheckAuditForm extends DomainEntity {
 	public void setIsDraft(Boolean isDraft) {
 		this.isDraft = isDraft;
 	}
-
+	@ManyToOne
 	public Newspaper getNewspaper() {
 		return newspaper;
 	}

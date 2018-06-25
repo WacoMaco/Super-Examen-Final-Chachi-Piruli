@@ -56,6 +56,7 @@ public class ControlCheckAudit extends DomainEntity {
 		this.controlDescription = controlDescription;
 	}
 	@Range(min=1, max=3)
+	@NotNull
 	public Integer getGauge() {
 		return gauge;
 	}
@@ -84,7 +85,7 @@ public class ControlCheckAudit extends DomainEntity {
 	public void setCreator(Admin creator) {
 		this.creator = creator;
 	}
-	@OneToOne(optional=true)
+	@ManyToOne(optional=true)
 	public Newspaper getNewspaper() {
 		return newspaper;
 	}
