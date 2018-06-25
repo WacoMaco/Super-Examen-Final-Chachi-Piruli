@@ -116,7 +116,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 					ModelAndView result;
 						try {
 							ControlCheckAudit toDelete = this.controlCheckAuditService.findOne(controlCheckAuditForm.getId());
-							this.controlCheckAuditService.save(toDelete);
+							this.controlCheckAuditService.delete(toDelete);
 							result = new ModelAndView("redirect:/controlCheckAudit/admin/list.do");
 						} catch (final Throwable oops) {
 							String errorMessage = "newspaper.commit.error";

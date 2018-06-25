@@ -11,6 +11,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+
 <display:table class="displaytag" 
 	name="controlCheckAudits" requestURI="controlCheckAudit/admin/list.do" id="row">
 
@@ -45,7 +46,10 @@
   	</display:column>
   	
 </display:table>
-
+			
+<a href="controlCheckAudit/admin/create.do">
+			<spring:message code="article.create" /> </a>
+			
 <spring:message code="datatables.locale.lang" var="tableLang"/>
 <spring:message code="datatables.moment.format" var="tableFormatMoment"/>
 <script>

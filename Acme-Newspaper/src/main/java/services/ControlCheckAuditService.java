@@ -57,10 +57,6 @@ public class ControlCheckAuditService {
 		if(toSave.getNewspaper()== null){
 			Assert.isTrue(toSave.getIsDraft()==true);
 		}
-		if (toSave.getId() != 0){
-		ControlCheckAudit old = this.controlCheckAuditRepository.findOne(toSave.getId());
-		Assert.isTrue(old.getIsDraft()==false);
-		}
 		
 		ControlCheckAudit saved = this.controlCheckAuditRepository.save(toSave);
 		
