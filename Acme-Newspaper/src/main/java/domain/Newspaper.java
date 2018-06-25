@@ -41,6 +41,7 @@ public class Newspaper extends DomainEntity {
 	
 	private Collection<Volume>	volumen;
 	private Collection<Advertisement> adverts;
+	private Collection<ControlCheckAudit> controlCheckAudit;
 
 
 	@NotBlank
@@ -133,6 +134,16 @@ public class Newspaper extends DomainEntity {
 	public void setAdverts(Collection<Advertisement> adverts) {
 		this.adverts = adverts;
 	}
+	
+	@OneToMany(mappedBy="newspaper")
+	public Collection<ControlCheckAudit> getControlCheckAudit() {
+		return controlCheckAudit;
+	}
+	public void setControlCheckAudit(Collection<ControlCheckAudit> controlCheckAudit) {
+		this.controlCheckAudit = controlCheckAudit;
+	}
+	
+	
 	
 	
 }

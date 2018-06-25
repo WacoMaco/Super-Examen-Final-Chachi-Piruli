@@ -29,6 +29,7 @@
 		</property>
 	</bean>
 	
+	
 		<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="user1" />
 		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
@@ -112,11 +113,23 @@
 			</list>
 		</property>
 	</bean>
+	
+		<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	
 	<!-- Admin -->
 	
-	<bean class="domain.Admin" id="admin1">
+	<bean class="domain.Admin" id="admin">
 	<property name="name" value="Manuel" />
 	<property name="surname" value="Bartual Moreno" />
 	<property name="email" value="admintodopoderoso@email.com"/>
@@ -144,6 +157,37 @@
 	</property>
 	
 	</bean>
+	
+	
+	<bean class="domain.Admin" id="admin2">
+	<property name="name" value="MrAdmin" />
+	<property name="surname" value="Fernandez Moreno" />
+	<property name="email" value="admindeexamen@email.com"/>
+	<property name="phone" value=""/>	
+	<property name="postalAddress" value=""/>
+	
+	<property name="userAccount" ref="userAccount9"/>
+	
+		<property name="folders">
+	<list>
+	<ref bean="folder43"/>
+	<ref bean="folder44"/>
+	<ref bean="folder45"/>
+	<ref bean="folder46"/>
+	<ref bean="folder47"/>
+	</list>
+	</property>
+	<property name="sentMessages">
+	<list>
+	</list>
+	</property>
+	<property name="receivedMessages">
+	<list>
+	</list>
+	</property>
+	
+	</bean>
+	
 	
 	
 	<!-- USER -->
@@ -740,7 +784,7 @@
 	
 	<bean class="domain.FollowUp" id="followUp2">
 	<property name="title" value="Ya se ha arreglado la mesa" />
-	<property name="publicationDate" value="2018/06/20 06:21"/>
+	<property name="publicationDate" value="2018/09/20 06:21"/>
 	<property name="summary" value="La mesa de messi se le ha arreglado completamente"/>
 	<property name="text" value="Tras meses de intenso arreglo, el jugador de futbol y su mesa..."/>
 <property name="photosURL">
@@ -1001,6 +1045,20 @@
 </property>
 </bean>
 
+<bean class="domain.Folder" id="folder47">
+<property name="name" value="in box" />
+<property name="isSystem" value="true" />
+<property name="messages">
+	<list>
+	</list>
+</property>
+<property name="parentFolder"> <null/> </property>
+<property name="childFolders">
+	<list>
+	</list>
+</property>
+</bean>
+
 <bean class="domain.Folder" id="folder9">
 <property name="name" value="New Folder" />
 <property name="isSystem" value="false" />
@@ -1150,6 +1208,21 @@
 
 </bean>
 
+<bean class="domain.Folder" id="folder46">
+<property name="name" value="out box" />
+<property name="isSystem" value="true" />
+<property name="messages">
+	<list>
+	</list>
+</property>
+<property name="parentFolder"> <null/> </property>
+<property name="childFolders">
+	<list>
+	</list>
+</property>
+
+</bean>
+
 
 <bean class="domain.Folder" id="folder19">
 <property name="name" value="notification box" />
@@ -1236,6 +1309,20 @@
 </bean>
 
 <bean class="domain.Folder" id="folder25">
+<property name="name" value="notification box" />
+<property name="isSystem" value="true" />
+<property name="messages">
+	<list>
+	</list>
+</property>
+<property name="parentFolder"> <null/> </property>
+<property name="childFolders">
+	<list>
+	</list>
+</property>
+</bean>
+
+<bean class="domain.Folder" id="folder45">
 <property name="name" value="notification box" />
 <property name="isSystem" value="true" />
 <property name="messages">
@@ -1376,6 +1463,20 @@
 </property>
 </bean>
 
+<bean class="domain.Folder" id="folder44">
+<property name="name" value="trash box" />
+<property name="isSystem" value="true" />
+<property name="messages">
+	<list>
+	</list>
+</property>
+<property name="parentFolder"> <null/> </property>
+<property name="childFolders">
+	<list>
+	</list>
+</property>
+</bean>
+
 <bean class="domain.Folder" id="folder35">
 <property name="name" value="spam box" />
 <property name="isSystem" value="true" />
@@ -1487,5 +1588,75 @@
 	</list>
 </property>
 </bean>
+
+
+<bean class="domain.Folder" id="folder43">
+<property name="name" value="spam box" />
+<property name="isSystem" value="true" />
+<property name="messages">
+	<list>
+	</list>
+</property>
+<property name="parentFolder"> <null/> </property>
+<property name="childFolders">
+	<list>
+	</list>
+</property>
+</bean>
+
+
+<!-- AUDIT -->
+
+<!-- Audit1 -->
+
+<bean class="domain.ControlCheckAudit" id="controlCheckAudit1">
+	<property name="ticker" value="1106-18" />
+	<property name="controlTitle" value="Audit 1" />
+	<property name="controlDescription" value="This is the audit 1"/>
+	<property name="gauge" value="1"/>	
+	<property name="controlMoment" value="2018/09/02 09:21"/>
+	<property name="isDraft" value="false"/>	
+	
+	<property name="creator" ref="admin"/>
+	<property name="newspaper" ref="newspaper1"/>
+	</bean>
+
+<!-- Audit2 -->
+
+<bean class="domain.ControlCheckAudit" id="controlCheckAudit2">
+	<property name="ticker" value="1708-18" />
+	<property name="controlTitle" value="Audir 2" />
+	<property name="controlDescription" value="this is the audit 2"/>
+	<property name="gauge" value="2"/>	
+	<property name="isDraft" value="true"/>	
+	<property name="creator" ref="admin"/>
+	<property name="newspaper" ref="newspaper2"/>
+	</bean>
+	
+	
+	<!-- Audit3 -->
+
+<bean class="domain.ControlCheckAudit" id="controlCheckAudit3">
+	<property name="ticker" value="1706-19" />
+	<property name="controlTitle" value="Audit 3" />
+	<property name="controlDescription" value="this is the audit 3"/>
+	<property name="gauge" value="3"/>	
+	<property name="isDraft" value="false"/>	
+	<property name="creator" ref="admin2"/>
+	<property name="newspaper" ref="newspaper1"/>
+	</bean>
+	
+	<!-- Audit4 -->
+
+<bean class="domain.ControlCheckAudit" id="controlCheckAudit4">
+	<property name="ticker" value="0308-18" />
+	<property name="controlTitle" value="Audit 2" />
+	<property name="controlDescription" value="this is the audit 2"/>
+	<property name="gauge" value="1"/>	
+	<property name="isDraft" value="true"/>	
+	<property name="creator" ref="admin2"/>
+	<property name="newspaper" ref="newspaper2"/>
+	</bean>
+
 
 </beans>
