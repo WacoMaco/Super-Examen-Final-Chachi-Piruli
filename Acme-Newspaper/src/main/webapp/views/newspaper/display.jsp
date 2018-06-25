@@ -110,6 +110,42 @@
 
 </table>
 
+
+<!-- CONTROL CHECK -->
+
+
+<table class="displayStyle">
+<jstl:forEach var="controlCheckAudit" items="${newspaper.ControlCheckAudit}">
+		<tr>
+			<th><spring:message code="ControlCheckAudit.title" /></th>
+		</tr>
+		
+		<tr>
+			<th><spring:message code="ControlCheckAudit.description" /></th>
+		</tr>
+
+		<tr>
+			<th> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
+			<spring:message code="newspaper.display" />
+		</a> </th>
+		</tr>
+
+
+
+
+
+</jstl:forEach>
+</table>
+
+
+
+
+
+
+
+
+
+
 <jstl:if test="${advert != null}">
 	<spring:message code ="newspaper.imageBannerNotFound" var = "imageBannerNotFound"></spring:message>
 	<a href="${advert.targetPageURL}">
