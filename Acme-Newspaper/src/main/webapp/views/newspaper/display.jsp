@@ -113,23 +113,24 @@
 
 <!-- CONTROL CHECK -->
 
+<h3><spring:message code="controlCheckAudit.audits" /></h3>
 
 <table class="displayStyle">
-<jstl:forEach var="controlCheckAudit" items="${newspaper.ControlCheckAudit}">
+
 		<tr>
-			<th><spring:message code="ControlCheckAudit.title" /></th>
+			<th><spring:message code="controlCheckAudit.title" /></th>
+			<th><spring:message code="controlCheckAudit.description" /></th>
+						<th>  </th>
+		</tr>
+
+<jstl:forEach var="controlCheckAudit" items="${newspaper.controlCheckAudit}">
+		<tr>
+			<th>${controlCheckAudit.controlTitle}</th>
+			<th>${controlCheckAudit.controlDescription}</th>
+						<th> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
+			<spring:message code="newspaper.display" /> </a>
 		</tr>
 		
-		<tr>
-			<th><spring:message code="ControlCheckAudit.description" /></th>
-		</tr>
-
-		<tr>
-			<th> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
-			<spring:message code="newspaper.display" />
-		</a> </th>
-		</tr>
-
 
 
 

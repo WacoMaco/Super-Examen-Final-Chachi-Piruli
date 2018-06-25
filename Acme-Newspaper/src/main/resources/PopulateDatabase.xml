@@ -156,6 +156,12 @@
 	</list>
 	</property>
 	
+	<property name="controlCheckAudits">
+	<list>
+	<ref bean="controlCheckAudit1"/>
+	<ref bean="controlCheckAudit2"/>
+	</list>	
+	</property>	
 	</bean>
 	
 	
@@ -185,6 +191,13 @@
 	<list>
 	</list>
 	</property>
+	
+	<property name="controlCheckAudits">
+	<list>
+	<ref bean="controlCheckAudit3"/>
+	<ref bean="controlCheckAudit4"/>
+	</list>	
+	</property>	
 	
 	</bean>
 	
@@ -561,6 +574,13 @@
 			<ref bean = "advertisement3"/>
 		</list>
 	</property>
+	
+	<property name="controlCheckAudit">
+	<list>
+	<ref bean="controlCheckAudit1"/>
+	<ref bean="controlCheckAudit3"/>
+	</list>	
+	</property>	
 
 </bean>
 
@@ -597,6 +617,13 @@
 				<ref bean = "advertisement2"/>
 			</list>
 	</property>
+	
+	<property name="controlCheckAudit">
+	<list>
+	<ref bean="controlCheckAudit2"/>
+	<ref bean="controlCheckAudit4"/>
+	</list>	
+	</property>	
 
 </bean>
 
@@ -631,6 +658,12 @@
 		<list>
 		</list>
 	</property>
+	
+		<property name="controlCheckAudit">
+	<list>
+
+	</list>	
+	</property>	
 	
 </bean>
 
