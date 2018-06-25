@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Random;
 
 import org.joda.time.LocalDate;
@@ -9,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import domain.Admin;
 import domain.ControlCheckAudit;
+import forms.ControlCheckAuditForm;
 
 import repositories.ControlCheckAuditRepository;
 
@@ -121,6 +124,39 @@ public class ControlCheckAuditService {
 		res = day + month + "/" + year + random;
 		return res;
 		
+		}
+
+		public ControlCheckAudit reconstruct(
+				ControlCheckAuditForm controlCheckAuditForm,
+				BindingResult binding) {
+			ControlCheckAudit res = new ControlCheckAudit ();
+			if (controlCheckAuditForm.getId() == 0){
+				res = this.create();
+			}
+			else {
+					res = this.findOne(controlCheckAuditForm.getId());	
+				}
+				res.setControlTitle(controlCheckAuditForm.getControlTitle());
+				res.setControlDescription(controlCheckAuditForm.getControlDescription());
+				res.setGauge(controlCheckAuditForm.getGauge());
+				res.setControlMoment(controlCheckAuditForm.getControlMoment());
+				res.setNewspaper(controlCheckAuditForm.getNewspaper());
+				res.setIsDraft(controlCheckAuditForm.getIsDraft());
+				
+				this.validator.validate(controlCheckAuditForm, binding);
+				
+				Date now = new Date();
+				
+				if (controlCheckAuditForm.getControlMoment() != null && controlCheckAuditForm.getControlMoment().before(now)){
+					binding.rejectValue("controlMoment", "controlCheckAudit.invalid.moment");
+				}
+				
+				if (controlCheckAuditForm.getNewspaper() != null && (controlCheckAuditForm.getIsDraft() == false)){
+					binding.rejectValue("newspaper", "controlCheckAudit.invalid.newspaper");
+				}
+			
+			
+			return res;
 		}
 	
 		
