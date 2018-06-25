@@ -37,6 +37,12 @@
  	<display:column property="controlMoment" title="${momentHeader}"
   	 format = "${format}"/>
   	
+  	<display:column>
+  	<jstl:if test="${row.isDraft == true }">
+  	<a href="controlCheckAudit/admin/edit.do?controlCheckAuditId=${row.id}">
+			<spring:message code="article.edit" /> </a>
+	</jstl:if>
+  	</display:column>
   	
 </display:table>
 

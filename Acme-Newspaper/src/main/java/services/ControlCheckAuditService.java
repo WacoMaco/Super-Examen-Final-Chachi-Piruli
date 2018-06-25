@@ -54,8 +54,8 @@ public class ControlCheckAuditService {
 		Collection<ControlCheckAudit> toUpdate1,toUpdate2,updated1,updated2;	
 		Admin principal = this.adminService.findByPrincipal();
 		Assert.isTrue(toSave.getCreator().equals(principal));
-		if(toSave.getNewspaper()!= null){
-			Assert.isTrue(toSave.getIsDraft()==false);
+		if(toSave.getNewspaper()== null){
+			Assert.isTrue(toSave.getIsDraft()==true);
 		}
 		if (toSave.getId() != 0){
 		ControlCheckAudit old = this.controlCheckAuditRepository.findOne(toSave.getId());
@@ -160,6 +160,20 @@ public class ControlCheckAuditService {
 				}
 			
 			
+			return res;
+		}
+
+		public ControlCheckAuditForm reconstructForm(
+				ControlCheckAudit controlCheckAudit) {
+			ControlCheckAuditForm res = new ControlCheckAuditForm();
+			res.setId(controlCheckAudit.getId());
+			res.setVersion(controlCheckAudit.getVersion());
+			res.setControlTitle(controlCheckAudit.getControlTitle());
+			res.setControlDescription(controlCheckAudit.getControlDescription());
+			res.setGauge(controlCheckAudit.getGauge());
+			res.setControlMoment(controlCheckAudit.getControlMoment());
+			res.setNewspaper(controlCheckAudit.getNewspaper());
+			res.setIsDraft(controlCheckAudit.getIsDraft());
 			return res;
 		}
 	

@@ -128,7 +128,7 @@
 			<th>${controlCheckAudit.controlTitle}</th>
 			<th>${controlCheckAudit.controlDescription}</th>
 						<th> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
-			<spring:message code="newspaper.display" /> </a>
+			<spring:message code="controlCheckAudit.display" /> </a>
 		</tr>
 		
 

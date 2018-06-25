@@ -39,6 +39,10 @@
 	
 	<input type="submit" name="save" id="save"
 		value="<spring:message code="controlCheckAudit.save" />" />&nbsp; 
+	<jstl:if test="${controlCheckAuditForm.id != 0 }">
+	<input type="submit" name="delete" id="delete"
+		value="<spring:message code="controlCheckAudit.delete" />" />&nbsp; 
+	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="controlCheckAudit.cancel" />"
 		onclick="javascript: relativeRedir('');" />

@@ -79,11 +79,10 @@ public class ControlCheckAuditAdminController extends AbstractController {
 			ControlCheckAuditForm controlCheckAuditForm;
 			try {
 				Admin admin = this.adminService.findByPrincipal();
-				article = this.articleService.findOne(articleId);
-				Assert.isTrue(article.getUser().equals(principal));
-				articleForm = this.articleService.reconstructForm(article);
-				result = this.createEditModelAndView(articleForm);
-				result.addObject("article", article);
+				controlCheckAudit = this.controlCheckAuditService.findOne(controlCheckAuditId);
+				Assert.isTrue(controlCheckAudit.getIsDraft()== true);
+				controlCheckAuditForm = this.controlCheckAuditService.reconstructForm(controlCheckAudit);
+				result = this.createEditModelAndView(controlCheckAuditForm);
 			} catch (final Throwable oops) {
 				result = new ModelAndView("redirect:/article/list.do");
 				redir.addFlashAttribute("message", "article.permision");
@@ -103,6 +102,21 @@ public class ControlCheckAuditAdminController extends AbstractController {
 					else
 						try {
 							this.controlCheckAuditService.save(controlCheckAudit);
+							result = new ModelAndView("redirect:/controlCheckAudit/admin/list.do");
+						} catch (final Throwable oops) {
+							String errorMessage = "newspaper.commit.error";
+							result = this.createEditModelAndView(controlCheckAuditForm, errorMessage);
+						}
+
+					return result;
+				}
+				
+				@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+				public ModelAndView delete(final ControlCheckAuditForm controlCheckAuditForm, final BindingResult binding) {
+					ModelAndView result;
+						try {
+							ControlCheckAudit toDelete = this.controlCheckAuditService.findOne(controlCheckAuditForm.getId());
+							this.controlCheckAuditService.save(toDelete);
 							result = new ModelAndView("redirect:/controlCheckAudit/admin/list.do");
 						} catch (final Throwable oops) {
 							String errorMessage = "newspaper.commit.error";
