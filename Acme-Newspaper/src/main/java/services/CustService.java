@@ -118,15 +118,32 @@ public class CustService {
 		}
 		
 		public String GenerateTicker(){
+			
+			String randomString = "";
+			String alphabet = "abcdefghijklmnopqrstuvwxyz";	
+			char[] alphabetArray = alphabet.toCharArray();
+			
+			Random r = new Random();
+
+			Integer numberOfRandomsCharacters = r.nextInt(5-2) + 2;
+			
+			for (int i = 0; i  <= numberOfRandomsCharacters ; i ++){
+			Integer numberOfRandomCharacters = r.nextInt(alphabetArray.length-0) + 0;
+			randomString += alphabetArray[numberOfRandomCharacters];
+				
+			}
+			
 		String res = "";
-		Random rand = new Random();
-		int  n = rand.nextInt(50) + 1;
+		
+		
 		LocalDate date = new LocalDate();
 		String day = String.valueOf(date.getDayOfMonth());
 		String month = String.valueOf(date.getMonthOfYear());
-		String year = String.valueOf(date.getYear());
-		String random = String.valueOf(n);
-		res = day + month + "/" + year + random;
+		if(date.getMonthOfYear() < 10){
+			month = 0 + month;
+		}
+		String year = String.valueOf(date.getYearOfCentury());
+		res = day + randomString + "-" + month + year ;
 		return res;
 		
 		}

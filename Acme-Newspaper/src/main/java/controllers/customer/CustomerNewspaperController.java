@@ -47,7 +47,7 @@ public class CustomerNewspaperController extends AbstractController{
 	private CustomerService	customerService;
 
 	@Autowired
-	private CustService	controlCheckAuditService;
+	private CustService	custService;
 
 	// Constructors
 
@@ -111,10 +111,10 @@ public class CustomerNewspaperController extends AbstractController{
 		}
 		
 		advertChoosen = this.newspaperService.findRandomAdvert(newspaper);
-		Collection<Cust> controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);
+		Collection<Cust> custs = this.custService.SelectPublishedByNewspaper(newspaperId);
 
 		result = new ModelAndView("newspaper/display");
-		result.addObject("controlCheckAudits", controlCheckAudits);
+		result.addObject("custs", custs);
 		result.addObject("articles", articles);
 		result.addObject("suscrito", suscrito);
 		result.addObject("newspaper", newspaper);
