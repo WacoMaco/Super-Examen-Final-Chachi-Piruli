@@ -58,6 +58,11 @@ public class ControlCheckAuditService {
 			Assert.isTrue(toSave.getIsDraft()==true);
 		}
 		
+		Date now = new Date();
+		if (toSave.getControlMoment() != null){
+			Assert.isTrue(toSave.getControlMoment().after(now));
+		}
+		
 		ControlCheckAudit saved = this.controlCheckAuditRepository.save(toSave);
 		
 		toUpdate1 = principal.getControlCheckAudits();
@@ -176,5 +181,8 @@ public class ControlCheckAuditService {
 	public Collection<ControlCheckAudit> SelectPublishedByNewspaper (Integer newspaperId){
 		Collection<ControlCheckAudit> res = this.controlCheckAuditRepository.findPublished(newspaperId);
 		return res;
+	}
+	public void flush(){
+		this.controlCheckAuditRepository.flush();
 	}
 }
