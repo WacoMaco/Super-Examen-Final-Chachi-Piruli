@@ -122,16 +122,13 @@
 <spring:message code="cust.description" var="description"/>
 <display:column property="description" title="${description}"/>
 
-<display:column> <a href="cust/display.do?custId=${row2.id}">
-			<spring:message code="cust.display" /> </a> </display:column>
-
 
 	<!-- gauge -->
 	<spring:message code="cust.gauge"
 		var="gauge" />
-		<jstl:if test="${row2.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
-		<jstl:if test="${row2.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
-		<jstl:if test="${row2.gauge == 3 }"> <jstl:set var="color" value="Blue"/> </jstl:if>
+		<jstl:if test="${row2.gauge == 1 }"> <jstl:set var="color" value="black"/> </jstl:if>
+		<jstl:if test="${row2.gauge == 2 }"> <jstl:set var="color" value="GreenYellow"/> </jstl:if>
+		<jstl:if test="${row2.gauge == 3 }"> <jstl:set var="color" value="DarkViolet"/> </jstl:if>
 		
 	<display:column style="background:${color}" property="gauge" title="${gauge}"
 		 />
@@ -144,6 +141,9 @@
   	var="momentHeader" />
  	<display:column property="moment" title="${momentHeader}"
   	 format = "${format}"/>
+  	 
+  	<display:column> <a href="cust/display.do?custId=${row2.id}">
+			<spring:message code="cust.display" /> </a> </display:column>
 
 
 </display:table>

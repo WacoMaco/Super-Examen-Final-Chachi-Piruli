@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -46,6 +47,7 @@ public class Cust extends DomainEntity {
 	}
 	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	@Size(max = 100)
 	public String getTitle() {
 		return title;
 	}
@@ -54,6 +56,7 @@ public class Cust extends DomainEntity {
 	}
 	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	@Size(max = 250)
 	public String getDescription() {
 		return description;
 	}

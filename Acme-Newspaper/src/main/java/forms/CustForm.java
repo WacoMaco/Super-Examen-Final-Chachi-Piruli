@@ -12,9 +12,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import domain.DomainEntity;
@@ -33,6 +35,8 @@ public class CustForm extends DomainEntity {
 	
 	
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	@Size(max = 100, min = 4)
 	public String getTitle() {
 		return title;
 	}
@@ -40,6 +44,8 @@ public class CustForm extends DomainEntity {
 		this.title = title;
 	}
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	@Size(max = 250, min = 4)
 	public String getDescription() {
 		return description;
 	}

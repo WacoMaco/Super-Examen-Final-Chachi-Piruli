@@ -1642,7 +1642,7 @@
 <!-- Audit1 -->
 
 <bean class="domain.Cust" id="cust1">
-	<property name="symbol" value="1106-18" />
+	<property name="symbol" value="02fhsg-0918" />
 	<property name="title" value="Audit 1" />
 	<property name="description" value="This is the audit 1"/>
 	<property name="gauge" value="1"/>	
@@ -1656,7 +1656,7 @@
 <!-- Audit2 -->
 
 <bean class="domain.Cust" id="cust2">
-	<property name="symbol" value="1708-18" />
+	<property name="symbol" value="03hrwk-1218" />
 	<property name="title" value="Audir 2" />
 	<property name="description" value="this is the audit 2"/>
 	<property name="gauge" value="2"/>	
@@ -1669,7 +1669,7 @@
 	<!-- Audit3 -->
 
 <bean class="domain.Cust" id="cust3">
-	<property name="symbol" value="1706-19" />
+	<property name="symbol" value="17ekw-0219" />
 	<property name="title" value="Audit 3" />
 	<property name="description" value="this is the audit 3"/>
 	<property name="gauge" value="3"/>	
@@ -1681,7 +1681,7 @@
 	<!-- Audit4 -->
 
 <bean class="domain.Cust" id="cust4">
-	<property name="symbol" value="0308-18" />
+	<property name="symbol" value="03etk-0618" />
 	<property name="title" value="Audit 2" />
 	<property name="description" value="this is the audit 2"/>
 	<property name="gauge" value="1"/>	

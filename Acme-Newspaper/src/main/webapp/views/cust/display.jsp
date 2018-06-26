@@ -46,9 +46,9 @@
 </tr>
 
 
-	<jstl:if test="${cust.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
-		<jstl:if test="${cust.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
-		<jstl:if test="${cust.gauge == 3 }"> <jstl:set var="color" value="Blue"/> </jstl:if>
+	<jstl:if test="${cust.gauge == 1 }"> <jstl:set var="color" value="black"/> </jstl:if>
+		<jstl:if test="${cust.gauge == 2 }"> <jstl:set var="color" value="greenyellow"/> </jstl:if>
+		<jstl:if test="${cust.gauge == 3 }"> <jstl:set var="color" value="darkviolet"/> </jstl:if>
 
 <tr>
 <td class ="left-display"> <strong> <spring:message code="cust.gauge" /> : </strong> </td>
