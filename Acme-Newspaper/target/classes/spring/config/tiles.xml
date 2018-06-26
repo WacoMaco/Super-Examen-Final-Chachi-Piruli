@@ -36,7 +36,7 @@
 		<value>/views/agent/tiles.xml</value>
 		<value>/views/advertisement/tiles.xml</value>
 		<value>/views/volume/tiles.xml</value>
-		<value>/views/controlCheckAudit/tiles.xml</value>
+		<value>/views/cust/tiles.xml</value>
 	
 	</util:list>
 

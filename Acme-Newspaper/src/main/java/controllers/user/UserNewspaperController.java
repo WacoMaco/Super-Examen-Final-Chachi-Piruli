@@ -26,7 +26,7 @@ import domain.User;
 import forms.NewspaperForm;
 
 import services.ArticleService;
-import services.ControlCheckAuditService;
+import services.CustService;
 import services.NewspaperService;
 import services.UserService;
 
@@ -46,7 +46,7 @@ public class UserNewspaperController extends AbstractController{
 	@Autowired
 	private UserService	userService;
 	@Autowired
-	private ControlCheckAuditService	controlCheckAuditService;
+	private CustService	controlCheckAuditService;
 
 	// Constructors
 

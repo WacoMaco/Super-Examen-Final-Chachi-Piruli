@@ -22,29 +22,29 @@ import domain.Newspaper;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class ControlCheckAuditForm extends DomainEntity {
+public class CustForm extends DomainEntity {
 	
-	private String controlTitle;
-	private String controlDescription;
+	private String title;
+	private String description;
 	private Integer gauge;
-	private Date controlMoment;
+	private Date moment;
 	private Boolean isDraft;
 	private Newspaper newspaper;
 	
 	
 	@NotBlank
-	public String getControlTitle() {
-		return controlTitle;
+	public String getTitle() {
+		return title;
 	}
-	public void setControlTitle(String controlTitle) {
-		this.controlTitle = controlTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	@NotBlank
-	public String getControlDescription() {
-		return controlDescription;
+	public String getDescription() {
+		return description;
 	}
-	public void setControlDescription(String controlDescription) {
-		this.controlDescription = controlDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	@Range(min=1, max=3)
 	@NotNull
@@ -56,11 +56,11 @@ public class ControlCheckAuditForm extends DomainEntity {
 	}
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	public Date getControlMoment() {
-		return controlMoment;
+	public Date getMoment() {
+		return moment;
 	}
-	public void setControlMoment(Date controlMoment) {
-		this.controlMoment = controlMoment;
+	public void setMoment(Date moment) {
+		this.moment = moment;
 	}
 	public Boolean getIsDraft() {
 		return isDraft;

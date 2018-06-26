@@ -16,19 +16,19 @@
        
 <tiles-definitions>
 
-	<definition name="controlCheckAudit/edit" extends="master.page">
-		<put-attribute name="title" value="Create a controlCheckAudit" />
-		<put-attribute name="body" value="/views/controlCheckAudit/edit.jsp" />
+	<definition name="cust/edit" extends="master.page">
+		<put-attribute name="title" value="Create a cust" />
+		<put-attribute name="body" value="/views/cust/edit.jsp" />
 	</definition>
 	
-	<definition name="controlCheckAudit/list" extends="master.page">
-		<put-attribute name="title" value="List of controlCheckAudits" />
-		<put-attribute name="body" value="/views/controlCheckAudit/list.jsp" />
+	<definition name="cust/list" extends="master.page">
+		<put-attribute name="title" value="List of custs" />
+		<put-attribute name="body" value="/views/cust/list.jsp" />
 	</definition>
 	
-			<definition name="controlCheckAudit/display" extends="master.page">
+			<definition name="cust/display" extends="master.page">
 		<put-attribute name="title" value="Displaying controlcheckAudit" />
-		<put-attribute name="body" value="/views/controlCheckAudit/display.jsp" />
+		<put-attribute name="body" value="/views/cust/display.jsp" />
 	</definition>
 
 </tiles-definitions>

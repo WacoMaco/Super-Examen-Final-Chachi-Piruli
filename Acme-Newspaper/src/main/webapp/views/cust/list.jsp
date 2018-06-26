@@ -13,25 +13,32 @@
 
 
 <display:table class="displaytag" 
-	name="controlCheckAudits" requestURI="controlCheckAudit/admin/list.do" id="row">
+	name="custs" requestURI="cust/admin/list.do" id="row">
+	
+	
+		<!-- Symbol -->
+	<spring:message code="cust.symbol"
+		var="symbol" />
+	<display:column property="symbol" title="${symbol}"
+		 />
 
 
 	<!-- title -->
-	<spring:message code="controlCheckAudit.title"
+	<spring:message code="cust.title"
 		var="titleHeader" />
-	<display:column property="controlTitle" title="${titleHeader}"
+	<display:column property="title" title="${titleHeader}"
 		 />
 
 
 	<!-- description -->
-	<spring:message code="controlCheckAudit.description"
+	<spring:message code="cust.description"
 		var="descriptionHeader" />
-	<display:column property="controlDescription" title="${descriptionHeader}"
+	<display:column property="description" title="${descriptionHeader}"
 		 />
 		 
 	
 	<!-- gauge -->
-	<spring:message code="controlCheckAudit.gauge"
+	<spring:message code="cust.gauge"
 		var="gauge" />
 		<jstl:if test="${row.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
 		<jstl:if test="${row.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
@@ -42,24 +49,24 @@
 		
 	
 	<!-- moment --> <!-- format para internacionalizacion -->
- 	<spring:message code="controlCheckAudit.format"
+ 	<spring:message code="cust.format"
   	var="format" />
- 	<spring:message code="controlCheckAudit.moment"
+ 	<spring:message code="cust.moment"
   	var="momentHeader" />
- 	<display:column property="controlMoment" title="${momentHeader}"
+ 	<display:column property="moment" title="${momentHeader}"
   	 format = "${format}"/>
   	
   	<display:column>
   	<jstl:if test="${row.isDraft == true }">
-  	<a href="controlCheckAudit/admin/edit.do?controlCheckAuditId=${row.id}">
+  	<a href="cust/admin/edit.do?custId=${row.id}">
 			<spring:message code="article.edit" /> </a>
 	</jstl:if>
   	</display:column>
   	
 </display:table>
 			
-<a href="controlCheckAudit/admin/create.do">
-			<spring:message code="controlCheckAudit.create" /> </a>
+<a href="cust/admin/create.do">
+			<spring:message code="cust.create" /> </a>
 			
 <spring:message code="datatables.locale.lang" var="tableLang"/>
 <spring:message code="datatables.moment.format" var="tableFormatMoment"/>

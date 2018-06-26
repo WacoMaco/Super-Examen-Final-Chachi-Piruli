@@ -26,7 +26,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="dashboard/admin/display.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
-					<li><a href="controlCheckAudit/admin/list.do"><spring:message code="controlCheckAudit.audits" /></a></li>
+					<li><a href="cust/admin/list.do"><spring:message code="cust.custs" /></a></li>
 						
 				</ul>
 			</li>

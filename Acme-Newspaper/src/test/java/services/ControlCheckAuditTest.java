@@ -25,7 +25,7 @@ public class ControlCheckAuditTest extends AbstractTest {
 	
 	//Autowired
 	@Autowired
-	ControlCheckAuditService	controlCheckAuditService;
+	CustService	controlCheckAuditService;
 	
 	@Autowired
 	AdminService	adminService;

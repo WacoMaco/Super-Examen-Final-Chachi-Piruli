@@ -148,8 +148,8 @@
 		<security:intercept-url pattern="/advertisement/agent/**" access="hasRole('AGENT')" />
 		
 		<!-- ControlCheckAudit -->
-		<security:intercept-url pattern="/controlCheckAudit/admin/**" access="hasRole('ADMIN')" /> 
-		<security:intercept-url pattern="/controlCheckAudit/display.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/cust/admin/**" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/cust/display.do" access="isAuthenticated()" /> 
 		
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

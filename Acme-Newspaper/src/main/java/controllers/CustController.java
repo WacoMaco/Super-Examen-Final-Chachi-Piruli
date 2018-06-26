@@ -19,20 +19,20 @@ import domain.User;
 
 import services.ActorService;
 import services.AdminService;
-import services.ControlCheckAuditService;
+import services.CustService;
 import services.NewspaperService;
 
 @Controller
-@RequestMapping("/controlCheckAudit")
-public class ControlCheckAuditController extends AbstractController {
+@RequestMapping("/cust")
+public class CustController extends AbstractController {
 
-	public ControlCheckAuditController() {
+	public CustController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	//Autowired
 			@Autowired
-			ControlCheckAuditService	controlCheckAuditService;
+			CustService	custService;
 			
 			@Autowired
 			AdminService	adminService;
@@ -45,25 +45,25 @@ public class ControlCheckAuditController extends AbstractController {
 
 			
 			@RequestMapping(value = "/display", method = RequestMethod.GET)
-			public ModelAndView display(@RequestParam final int controlCheckAuditId, RedirectAttributes redir) {
+			public ModelAndView display(@RequestParam final int custId, RedirectAttributes redir) {
 				ModelAndView result;
-				Cust controlCheckAudit;
+				Cust cust;
 				try{
 				Actor principal = this.actorService.findByPrincipal();
-				controlCheckAudit = this.controlCheckAuditService.findOne(controlCheckAuditId);
+				cust = this.custService.findOne(custId);
 				if (principal instanceof User){
-					Assert.isTrue(((User) principal).getNewspapers().contains(controlCheckAudit.getNewspaper()));
+					Assert.isTrue(((User) principal).getNewspapers().contains(cust.getNewspaper()));
 				}
 				if (principal instanceof Customer){
 					Collection<Newspaper> test = this.newspaperService.selectSubscribedNewspapers();
-					Assert.isTrue(test.contains(controlCheckAudit.getNewspaper()) || !controlCheckAudit.getNewspaper().getIsPrivate());
+					Assert.isTrue(test.contains(cust.getNewspaper()) || !cust.getNewspaper().getIsPrivate());
 				}
 				
 				
 
-				result = new ModelAndView("controlCheckAudit/display");
+				result = new ModelAndView("cust/display");
 				result.addObject("principal", principal);
-				result.addObject("controlCheckAudit", controlCheckAudit);
+				result.addObject("cust", cust);
 				}catch (Throwable oops){
 					result = new ModelAndView("redirect:/newspaper/list.do");	
 					redir.addFlashAttribute("message", "article.permission"); 

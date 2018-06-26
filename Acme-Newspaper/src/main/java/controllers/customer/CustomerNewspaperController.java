@@ -23,7 +23,7 @@ import domain.Newspaper;
 import domain.Subscription;
 
 import services.ArticleService;
-import services.ControlCheckAuditService;
+import services.CustService;
 import services.CustomerService;
 import services.NewspaperService;
 import services.SubscriptionService;
@@ -47,7 +47,7 @@ public class CustomerNewspaperController extends AbstractController{
 	private CustomerService	customerService;
 
 	@Autowired
-	private ControlCheckAuditService	controlCheckAuditService;
+	private CustService	controlCheckAuditService;
 
 	// Constructors
 

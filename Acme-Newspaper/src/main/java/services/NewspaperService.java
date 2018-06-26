@@ -55,7 +55,7 @@ public class NewspaperService {
 	@Autowired
 	private CustomisationService customisationService;
 	@Autowired
-	private ControlCheckAuditService controlCheckAuditService;
+	private CustService controlCheckAuditService;
 	
 
 	//Constructors

@@ -15,17 +15,17 @@ import org.springframework.validation.Validator;
 
 import domain.Admin;
 import domain.Cust;
-import forms.ControlCheckAuditForm;
+import forms.CustForm;
 
-import repositories.ControlCheckAuditRepository;
+import repositories.CustRepository;
 
 @Service
 @Transactional
-public class ControlCheckAuditService {
+public class CustService {
 
 	// Managed Repository
 		@Autowired
-		private ControlCheckAuditRepository	controlCheckAuditRepository;
+		private CustRepository	custRepository;
 
 		// Supporting services
 		@Autowired
@@ -34,19 +34,19 @@ public class ControlCheckAuditService {
 		@Autowired
 		private Validator		validator;
 
-		public ControlCheckAuditService() {
+		public CustService() {
 			super();
 		}
 		
 		public Cust create(){
 			Admin principal = this.adminService.findByPrincipal();
-			Cust controlCheckAudit = new Cust();
-			controlCheckAudit.setCreator(principal);
+			Cust cust = new Cust();
+			cust.setCreator(principal);
 			
 			String ticker = this.GenerateTicker();
-			controlCheckAudit.setSymbol(ticker);
+			cust.setSymbol(ticker);
 			
-			return controlCheckAudit;
+			return cust;
 			
 		}
 		
@@ -63,7 +63,7 @@ public class ControlCheckAuditService {
 			Assert.isTrue(toSave.getMoment().after(now));
 		}
 		
-		Cust saved = this.controlCheckAuditRepository.save(toSave);
+		Cust saved = this.custRepository.save(toSave);
 		
 		toUpdate1 = principal.getCusts();
 		updated1 = new ArrayList<Cust>(toUpdate1);
@@ -99,21 +99,21 @@ public class ControlCheckAuditService {
 		toDelete.getNewspaper().setCusts(updated2);
 		}
 		
-		this.controlCheckAuditRepository.delete(toDelete);
+		this.custRepository.delete(toDelete);
 		
 
 		}
 		
 		
 		public Cust findOne(Integer id){
-		Cust res = this.controlCheckAuditRepository.findOne(id);
+		Cust res = this.custRepository.findOne(id);
 		Assert.notNull(res);
 		return res;
 			
 		}
 		
 		public Collection<Cust> findAll(){
-		Collection<Cust> res = this.controlCheckAuditRepository.findAll();
+		Collection<Cust> res = this.custRepository.findAll();
 		return res;
 		}
 		
@@ -132,57 +132,57 @@ public class ControlCheckAuditService {
 		}
 
 		public Cust reconstruct(
-				ControlCheckAuditForm controlCheckAuditForm,
+				CustForm custForm,
 				BindingResult binding) {
 			Cust res = new Cust ();
-			if (controlCheckAuditForm.getId() == 0){
+			if (custForm.getId() == 0){
 				res = this.create();
 			}
 			else {
-					res = this.findOne(controlCheckAuditForm.getId());	
+					res = this.findOne(custForm.getId());	
 				}
-				res.setTitle(controlCheckAuditForm.getControlTitle());
-				res.setDescription(controlCheckAuditForm.getControlDescription());
-				res.setGauge(controlCheckAuditForm.getGauge());
-				res.setMoment(controlCheckAuditForm.getControlMoment());
-				res.setNewspaper(controlCheckAuditForm.getNewspaper());
-				res.setIsDraft(controlCheckAuditForm.getIsDraft());
+				res.setTitle(custForm.getTitle());
+				res.setDescription(custForm.getDescription());
+				res.setGauge(custForm.getGauge());
+				res.setMoment(custForm.getMoment());
+				res.setNewspaper(custForm.getNewspaper());
+				res.setIsDraft(custForm.getIsDraft());
 				
-				this.validator.validate(controlCheckAuditForm, binding);
+				this.validator.validate(custForm, binding);
 				
 				Date now = new Date();
 				
-				if (controlCheckAuditForm.getControlMoment() != null && controlCheckAuditForm.getControlMoment().before(now)){
-					binding.rejectValue("controlMoment", "controlCheckAudit.invalid.moment");
+				if (custForm.getMoment() != null && custForm.getMoment().before(now)){
+					binding.rejectValue("controlMoment", "cust.invalid.moment");
 				}
 				
-				if (controlCheckAuditForm.getNewspaper() == null && (controlCheckAuditForm.getIsDraft() == false)){
-					binding.rejectValue("newspaper", "controlCheckAudit.invalid.newspaper");
+				if (custForm.getNewspaper() == null && (custForm.getIsDraft() == false)){
+					binding.rejectValue("newspaper", "cust.invalid.newspaper");
 				}
 			
 			
 			return res;
 		}
 
-		public ControlCheckAuditForm reconstructForm(
-				Cust controlCheckAudit) {
-			ControlCheckAuditForm res = new ControlCheckAuditForm();
-			res.setId(controlCheckAudit.getId());
-			res.setVersion(controlCheckAudit.getVersion());
-			res.setControlTitle(controlCheckAudit.getTitle());
-			res.setControlDescription(controlCheckAudit.getDescription());
-			res.setGauge(controlCheckAudit.getGauge());
-			res.setControlMoment(controlCheckAudit.getMoment());
-			res.setNewspaper(controlCheckAudit.getNewspaper());
-			res.setIsDraft(controlCheckAudit.getIsDraft());
+		public CustForm reconstructForm(
+				Cust cust) {
+			CustForm res = new CustForm();
+			res.setId(cust.getId());
+			res.setVersion(cust.getVersion());
+			res.setTitle(cust.getTitle());
+			res.setDescription(cust.getDescription());
+			res.setGauge(cust.getGauge());
+			res.setMoment(cust.getMoment());
+			res.setNewspaper(cust.getNewspaper());
+			res.setIsDraft(cust.getIsDraft());
 			return res;
 		}
 	
 	public Collection<Cust> SelectPublishedByNewspaper (Integer newspaperId){
-		Collection<Cust> res = this.controlCheckAuditRepository.findPublished(newspaperId);
+		Collection<Cust> res = this.custRepository.findCustPublished(newspaperId);
 		return res;
 	}
 	public void flush(){
-		this.controlCheckAuditRepository.flush();
+		this.custRepository.flush();
 	}
 }

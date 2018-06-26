@@ -1,5 +1,5 @@
 #./src/main/resources/Entities.map
-#Tue Jun 26 12:52:00 CEST 2018
+#Tue Jun 26 16:18:51 CEST 2018
 user3=103
 user2=102
 user1=101
@@ -44,10 +44,6 @@ folder3=130
 folder20=149
 folder2=129
 folder1=128
-controlCheckAudit4=178
-controlCheckAudit3=177
-controlCheckAudit2=176
-controlCheckAudit1=175
 chirp3=122
 chirp2=121
 chirp1=120
@@ -64,9 +60,13 @@ folder12=140
 folder11=139
 folder10=138
 customisation=123
+cust4=178
 advertisement3=126
+cust3=177
 advertisement2=125
+cust2=176
 advertisement1=124
+cust1=175
 admin2=100
 newspaper3=116
 newspaper2=114

@@ -11,40 +11,40 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="controlCheckAudit/admin/edit.do" modelAttribute="controlCheckAuditForm" >
+<form:form action="cust/admin/edit.do" modelAttribute="custForm" >
 
 
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 
 	
-	<acme:textbox code="controlCheckAudit.title" path="controlTitle"/>
+	<acme:textbox code="cust.title" path="title"/>
 	<br />
 	
-	<acme:textarea code="controlCheckAudit.description" path="controlDescription"/>
+	<acme:textarea code="cust.description" path="description"/>
 	<br />
 	
-	<acme:textbox code="controlCheckAudit.moment" path="controlMoment"/>
+	<acme:textbox code="cust.moment" path="moment"/>
 	<br />
 	
-	<acme:textbox code="controlCheckAudit.gauge" path="gauge"/>
+	<acme:textbox code="cust.gauge" path="gauge"/>
 	<br />
 	
-	<acme:select items="${newspapers}" itemLabel="title" code="controlCheckAudit.newspaper" path="newspaper"/>
+	<acme:select items="${newspapers}" itemLabel="title" code="cust.newspaper" path="newspaper"/>
 	
-	<spring:message code="controlCheckAudit.isDraft"/>
+	<spring:message code="cust.isDraft"/>
 	<form:checkbox path="isDraft"/> 
 	<form:errors path="isDraft"/>
 	<br />
 	
 	<input type="submit" name="save" id="save"
-		value="<spring:message code="controlCheckAudit.save" />" />&nbsp; 
-	<jstl:if test="${controlCheckAuditForm.id != 0 }">
+		value="<spring:message code="cust.save" />" />&nbsp; 
+	<jstl:if test="${custForm.id != 0 }">
 	<input type="submit" name="delete" id="delete"
-		value="<spring:message code="controlCheckAudit.delete" />" />&nbsp; 
+		value="<spring:message code="cust.delete" />" />&nbsp; 
 	</jstl:if>
 	<input type="button" name="cancel"
-		value="<spring:message code="controlCheckAudit.cancel" />"
+		value="<spring:message code="cust.cancel" />"
 		onclick="javascript: relativeRedir('');" />
 	<br />
 <jstl:out value="${message}"/>

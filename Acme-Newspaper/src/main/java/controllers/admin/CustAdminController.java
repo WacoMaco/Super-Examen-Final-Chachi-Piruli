@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import services.AdminService;
-import services.ControlCheckAuditService;
+import services.CustService;
 import services.NewspaperService;
 
 import controllers.AbstractController;
@@ -23,16 +23,16 @@ import domain.Cust;
 import domain.Newspaper;
 import domain.User;
 import forms.ArticleForm;
-import forms.ControlCheckAuditForm;
+import forms.CustForm;
 import forms.NewspaperForm;
 
 @Controller
-@RequestMapping("/controlCheckAudit/admin")
-public class ControlCheckAuditAdminController extends AbstractController {
+@RequestMapping("/cust/admin")
+public class CustAdminController extends AbstractController {
 	
 	//Autowired
 		@Autowired
-		ControlCheckAuditService	controlCheckAuditService;
+		CustService	custService;
 		
 		@Autowired
 		AdminService	adminService;
@@ -41,7 +41,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		NewspaperService	newspaperService;
 
 		
-		public ControlCheckAuditAdminController() {
+		public CustAdminController() {
 			super();
 		}
 		
@@ -49,9 +49,9 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		public ModelAndView list(String filter) {
 			ModelAndView result;
 			Admin principal = this.adminService.findByPrincipal();
-			Collection<Cust> controlCheckAudits = principal.getCusts();
-			result = new ModelAndView("controlCheckAudit/list");
-			result.addObject("controlCheckAudits", controlCheckAudits);
+			Collection<Cust> custs = principal.getCusts();
+			result = new ModelAndView("cust/list");
+			result.addObject("custs", custs);
 			result.addObject("principal", principal);
 			return result;
 		}
@@ -62,9 +62,9 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		@RequestMapping(value = "/create", method = RequestMethod.GET)
 		public ModelAndView create() {
 			ModelAndView result;
-			ControlCheckAuditForm controlCheckAuditForm = new ControlCheckAuditForm();
+			CustForm custForm = new CustForm();
 
-			result = this.createEditModelAndView(controlCheckAuditForm);
+			result = this.createEditModelAndView(custForm);
 
 			return result;
 		}
@@ -73,17 +73,17 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		
 		
 		@RequestMapping(value = "/edit", method = RequestMethod.GET)
-		public ModelAndView edit(@RequestParam final int controlCheckAuditId, final RedirectAttributes redir) {
+		public ModelAndView edit(@RequestParam final int custId, final RedirectAttributes redir) {
 			ModelAndView result;
-			Cust controlCheckAudit;
-			ControlCheckAuditForm controlCheckAuditForm;
+			Cust cust;
+			CustForm custForm;
 			try {
 				Admin admin = this.adminService.findByPrincipal();
-				controlCheckAudit = this.controlCheckAuditService.findOne(controlCheckAuditId);
-				Assert.isTrue(controlCheckAudit.getIsDraft()== true);
-				Assert.isTrue(controlCheckAudit.getCreator().equals(admin));
-				controlCheckAuditForm = this.controlCheckAuditService.reconstructForm(controlCheckAudit);
-				result = this.createEditModelAndView(controlCheckAuditForm);
+				cust = this.custService.findOne(custId);
+				Assert.isTrue(cust.getIsDraft()== true);
+				Assert.isTrue(cust.getCreator().equals(admin));
+				custForm = this.custService.reconstructForm(cust);
+				result = this.createEditModelAndView(custForm);
 			} catch (final Throwable oops) {
 				result = new ModelAndView("redirect:/article/list.do");
 				redir.addFlashAttribute("message", "article.permision");
@@ -95,33 +95,33 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		}
 
 				@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-				public ModelAndView save(final ControlCheckAuditForm controlCheckAuditForm, final BindingResult binding) {
+				public ModelAndView save(final CustForm custForm, final BindingResult binding) {
 					ModelAndView result;
-					Cust controlCheckAudit = this.controlCheckAuditService.reconstruct(controlCheckAuditForm,binding);
+					Cust cust = this.custService.reconstruct(custForm,binding);
 					if (binding.hasErrors())
-						result = this.createEditModelAndView(controlCheckAuditForm);
+						result = this.createEditModelAndView(custForm);
 					else
 						try {
-							this.controlCheckAuditService.save(controlCheckAudit);
-							result = new ModelAndView("redirect:/controlCheckAudit/admin/list.do");
+							this.custService.save(cust);
+							result = new ModelAndView("redirect:/cust/admin/list.do");
 						} catch (final Throwable oops) {
 							String errorMessage = "newspaper.commit.error";
-							result = this.createEditModelAndView(controlCheckAuditForm, errorMessage);
+							result = this.createEditModelAndView(custForm, errorMessage);
 						}
 
 					return result;
 				}
 				
 				@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-				public ModelAndView delete(final ControlCheckAuditForm controlCheckAuditForm, final BindingResult binding) {
+				public ModelAndView delete(final CustForm custForm, final BindingResult binding) {
 					ModelAndView result;
 						try {
-							Cust toDelete = this.controlCheckAuditService.findOne(controlCheckAuditForm.getId());
-							this.controlCheckAuditService.delete(toDelete);
-							result = new ModelAndView("redirect:/controlCheckAudit/admin/list.do");
+							Cust toDelete = this.custService.findOne(custForm.getId());
+							this.custService.delete(toDelete);
+							result = new ModelAndView("redirect:/cust/admin/list.do");
 						} catch (final Throwable oops) {
 							String errorMessage = "newspaper.commit.error";
-							result = this.createEditModelAndView(controlCheckAuditForm, errorMessage);
+							result = this.createEditModelAndView(custForm, errorMessage);
 						}
 
 					return result;
@@ -129,23 +129,23 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		
 		
 		
-		private ModelAndView createEditModelAndView(ControlCheckAuditForm controlCheckAuditForm){
+		private ModelAndView createEditModelAndView(CustForm custForm){
 				ModelAndView result;
 
-				result = this.createEditModelAndView(controlCheckAuditForm, null);
+				result = this.createEditModelAndView(custForm, null);
 
 				return result;
 			}
 
 		private ModelAndView createEditModelAndView(
-				ControlCheckAuditForm controlCheckAuditForm, String message) {
+				CustForm custForm, String message) {
 			ModelAndView result;
 			
 			Collection<Newspaper> newspapers = this.newspaperService.publishedNewspapers();
 
-			result = new ModelAndView("controlCheckAudit/edit");
+			result = new ModelAndView("cust/edit");
 			result.addObject("newspapers", newspapers);
-			result.addObject("controlCheckAuditForm", controlCheckAuditForm);
+			result.addObject("custForm", custForm);
 			result.addObject("message", message);
 
 			return result;
