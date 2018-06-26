@@ -22,6 +22,7 @@ import domain.Actor;
 import domain.Admin;
 import domain.Advertisement;
 import domain.Article;
+import domain.ControlCheckAudit;
 import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
@@ -53,6 +54,8 @@ public class NewspaperService {
 	private Validator validator;
 	@Autowired
 	private CustomisationService customisationService;
+	@Autowired
+	private ControlCheckAuditService controlCheckAuditService;
 	
 
 	//Constructors
@@ -68,6 +71,7 @@ public class NewspaperService {
 		result.setUser(principal);
 		result.setArticles(new ArrayList<Article>());
 		result.setSubscriptions(new ArrayList<Subscription>());
+		result.setControlCheckAudit(new ArrayList<ControlCheckAudit>());
 		return result;
 	}
 
@@ -117,10 +121,16 @@ public class NewspaperService {
 		
 		Collection<Subscription> subs = new ArrayList<Subscription>(newspaper.getSubscriptions());
 		
+		Collection<ControlCheckAudit> controlCheckAudit = new ArrayList<ControlCheckAudit>(newspaper.getControlCheckAudit());
+		
 		adverts = newspaper.getAdverts();
 		
 		for(Advertisement advert : adverts){
 			this.advertisementService.deleteAdmin(advert);
+		}
+		
+		for (ControlCheckAudit c : controlCheckAudit){
+			this.controlCheckAuditService.delete(c);
 		}
 		
 		for(Subscription s : subs){

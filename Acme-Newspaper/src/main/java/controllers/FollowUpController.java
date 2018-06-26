@@ -17,7 +17,7 @@ import services.FollowUpService;
 
 @Controller
 @RequestMapping("/followUp")
-public class FollowUpController {
+public class FollowUpController extends AbstractController {
 	
 	@Autowired
 	FollowUpService followUpService;

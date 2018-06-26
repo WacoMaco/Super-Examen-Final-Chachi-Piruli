@@ -115,23 +115,23 @@
 
 <h3><spring:message code="controlCheckAudit.audits" /></h3>
 
-<display:table name="controlCheckAudits" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">>
+<display:table name="controlCheckAudits" id="row2" requestURI="${requestURI}" pagesize="5" class="displaytag">>
 <spring:message code="controlCheckAudit.title" var="title"/>
 <display:column property="controlTitle" title="${title }"/>
 
 <spring:message code="controlCheckAudit.description" var="description"/>
 <display:column property="controlDescription" title="${description}"/>
 
-<display:column> <a href="controlCheckAudit/display.do?controlCheckAuditId=${controlCheckAudit.id}">
+<display:column> <a href="controlCheckAudit/display.do?controlCheckAuditId=${row2.id}">
 			<spring:message code="controlCheckAudit.display" /> </a> </display:column>
 
 
 	<!-- gauge -->
 	<spring:message code="controlCheckAudit.gauge"
 		var="gauge" />
-		<jstl:if test="${row.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
-		<jstl:if test="${row.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
-		<jstl:if test="${row.gauge == 3 }"> <jstl:set var="color" value="Blue"/> </jstl:if>
+		<jstl:if test="${row2.gauge == 1 }"> <jstl:set var="color" value="lightyellow"/> </jstl:if>
+		<jstl:if test="${row2.gauge == 2 }"> <jstl:set var="color" value="Moccasin"/> </jstl:if>
+		<jstl:if test="${row2.gauge == 3 }"> <jstl:set var="color" value="Blue"/> </jstl:if>
 		
 	<display:column style="background:${color}" property="gauge" title="${gauge}"
 		 />

@@ -25,5 +25,10 @@
 		<put-attribute name="title" value="Lista de controlCheckAudits" />
 		<put-attribute name="body" value="/views/controlCheckAudit/list.jsp" />
 	</definition>
+	
+		<definition name="controlCheckAudit/display" extends="master.page">
+		<put-attribute name="title" value="Mostrando controlCheckAudit" />
+		<put-attribute name="body" value="/views/controlCheckAudit/display.jsp" />
+	</definition>
 
 </tiles-definitions>
