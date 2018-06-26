@@ -6,3 +6,6 @@ draft con o sin newspaper asociado, pero para guardarlo en modo final te obliga 
 se veía nada al hacer display. Es por esto que he optado a "colorear" tan solo la columna donde aparece los gauges.
 -Por último para el título y las descripciones de los custs, además de los tamaños máximos citados en el enunciado (100 y 250 respectivamente) he puesto la restricción de que como mínimo tengan que ser 4 caracteres.
 -Con respecto al item 5, hay 2 scripts de creación, create-acme-newspaper.sql que contiene el populate y create-acme-newspaper-purgued.sql que está "purgado" y contiene lo mínimo para lanzar el proyecto
+
+Para acceder a la lista de custs como admin hay que ir en el menú a administrador > custs. Desde ese listado podemos crearlos y editarlos.
+Para ver los custs asociados a un newspapers debemos ir a su display

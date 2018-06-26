@@ -41,8 +41,9 @@
 </tr>
 
 <tr>
+<spring:message code="cust.pattern" var="format" />
 <td class ="left-display"> <strong> <spring:message code="cust.moment" /> : </strong> </td>
-<td class="right-display">  <jstl:out value = "${cust.moment}"/> &nbsp;  </td>
+<td class="right-display">  <fmt:formatDate  value="${cust.moment}" pattern="${format}"/>   </td>
 </tr>
 
 
