@@ -148,7 +148,14 @@
 
 </display:table>
 
+<security:authorize access="hasRole('ADMIN')">
 
+<a href="cust/admin/create.do">
+			<spring:message code="cust.create" /> </a>
+
+</security:authorize>
+
+<br/>
 
 
 <jstl:if test="${advert != null}">
