@@ -56,7 +56,7 @@ public class ControlCheckAuditController extends AbstractController {
 				}
 				if (principal instanceof Customer){
 					Collection<Newspaper> test = this.newspaperService.selectSubscribedNewspapers();
-					Assert.isTrue(test.contains(controlCheckAudit.getNewspaper()));
+					Assert.isTrue(test.contains(controlCheckAudit.getNewspaper()) || !controlCheckAudit.getNewspaper().getIsPrivate());
 				}
 				
 				
