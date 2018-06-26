@@ -1,0 +1,1 @@
+select a from Admin a where a.custs.size = (select max(admin.custs.size) from Admin admin);

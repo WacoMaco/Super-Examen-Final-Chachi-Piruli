@@ -1,0 +1,1 @@
+select (select count(n) from Newspaper n where (n.custs.size >= 1))*1.0/count(n2) from Newspaper n2;
