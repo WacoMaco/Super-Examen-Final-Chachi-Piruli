@@ -14,7 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import domain.Admin;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import forms.ControlCheckAuditForm;
 
 import repositories.ControlCheckAuditRepository;
@@ -38,20 +38,20 @@ public class ControlCheckAuditService {
 			super();
 		}
 		
-		public ControlCheckAudit create(){
+		public Cust create(){
 			Admin principal = this.adminService.findByPrincipal();
-			ControlCheckAudit controlCheckAudit = new ControlCheckAudit();
+			Cust controlCheckAudit = new Cust();
 			controlCheckAudit.setCreator(principal);
 			
 			String ticker = this.GenerateTicker();
-			controlCheckAudit.setTicker(ticker);
+			controlCheckAudit.setSymbol(ticker);
 			
 			return controlCheckAudit;
 			
 		}
 		
-		public ControlCheckAudit save(ControlCheckAudit toSave){
-		Collection<ControlCheckAudit> toUpdate1,toUpdate2,updated1,updated2;	
+		public Cust save(Cust toSave){
+		Collection<Cust> toUpdate1,toUpdate2,updated1,updated2;	
 		Admin principal = this.adminService.findByPrincipal();
 		Assert.isTrue(toSave.getCreator().equals(principal));
 		if(toSave.getNewspaper()== null){
@@ -59,44 +59,44 @@ public class ControlCheckAuditService {
 		}
 		
 		Date now = new Date();
-		if (toSave.getControlMoment() != null){
-			Assert.isTrue(toSave.getControlMoment().after(now));
+		if (toSave.getMoment() != null){
+			Assert.isTrue(toSave.getMoment().after(now));
 		}
 		
-		ControlCheckAudit saved = this.controlCheckAuditRepository.save(toSave);
+		Cust saved = this.controlCheckAuditRepository.save(toSave);
 		
-		toUpdate1 = principal.getControlCheckAudits();
-		updated1 = new ArrayList<ControlCheckAudit>(toUpdate1);
+		toUpdate1 = principal.getCusts();
+		updated1 = new ArrayList<Cust>(toUpdate1);
 		updated1.add(saved);
-		principal.setControlCheckAudits(updated1);
+		principal.setCusts(updated1);
 		
 		if (toSave.getNewspaper() != null){
-		toUpdate2 = saved.getNewspaper().getControlCheckAudit();
-		updated2 = new ArrayList<ControlCheckAudit>(toUpdate2);
+		toUpdate2 = saved.getNewspaper().getCusts();
+		updated2 = new ArrayList<Cust>(toUpdate2);
 		updated2.add(saved);
-		saved.getNewspaper().setControlCheckAudit(updated2);
+		saved.getNewspaper().setCusts(updated2);
 		}
 			
 		return saved;
 		}
 		
 		
-		public void delete(ControlCheckAudit toDelete){
-		Collection<ControlCheckAudit> toUpdate1,toUpdate2,updated1,updated2;	
+		public void delete(Cust toDelete){
+		Collection<Cust> toUpdate1,toUpdate2,updated1,updated2;	
 		Admin principal = this.adminService.findByPrincipal();
 		
 		Assert.isTrue(toDelete.getCreator().equals(principal));
 		
-		toUpdate1 = principal.getControlCheckAudits();
-		updated1 = new ArrayList<ControlCheckAudit>(toUpdate1);
+		toUpdate1 = principal.getCusts();
+		updated1 = new ArrayList<Cust>(toUpdate1);
 		updated1.remove(toDelete);
-		principal.setControlCheckAudits(updated1);
+		principal.setCusts(updated1);
 		
 		if (toDelete.getNewspaper() != null){
-		toUpdate2 = toDelete.getNewspaper().getControlCheckAudit();
-		updated2 = new ArrayList<ControlCheckAudit>(toUpdate2);
+		toUpdate2 = toDelete.getNewspaper().getCusts();
+		updated2 = new ArrayList<Cust>(toUpdate2);
 		updated2.remove(toDelete);
-		toDelete.getNewspaper().setControlCheckAudit(updated2);
+		toDelete.getNewspaper().setCusts(updated2);
 		}
 		
 		this.controlCheckAuditRepository.delete(toDelete);
@@ -105,15 +105,15 @@ public class ControlCheckAuditService {
 		}
 		
 		
-		public ControlCheckAudit findOne(Integer id){
-		ControlCheckAudit res = this.controlCheckAuditRepository.findOne(id);
+		public Cust findOne(Integer id){
+		Cust res = this.controlCheckAuditRepository.findOne(id);
 		Assert.notNull(res);
 		return res;
 			
 		}
 		
-		public Collection<ControlCheckAudit> findAll(){
-		Collection<ControlCheckAudit> res = this.controlCheckAuditRepository.findAll();
+		public Collection<Cust> findAll(){
+		Collection<Cust> res = this.controlCheckAuditRepository.findAll();
 		return res;
 		}
 		
@@ -131,20 +131,20 @@ public class ControlCheckAuditService {
 		
 		}
 
-		public ControlCheckAudit reconstruct(
+		public Cust reconstruct(
 				ControlCheckAuditForm controlCheckAuditForm,
 				BindingResult binding) {
-			ControlCheckAudit res = new ControlCheckAudit ();
+			Cust res = new Cust ();
 			if (controlCheckAuditForm.getId() == 0){
 				res = this.create();
 			}
 			else {
 					res = this.findOne(controlCheckAuditForm.getId());	
 				}
-				res.setControlTitle(controlCheckAuditForm.getControlTitle());
-				res.setControlDescription(controlCheckAuditForm.getControlDescription());
+				res.setTitle(controlCheckAuditForm.getControlTitle());
+				res.setDescription(controlCheckAuditForm.getControlDescription());
 				res.setGauge(controlCheckAuditForm.getGauge());
-				res.setControlMoment(controlCheckAuditForm.getControlMoment());
+				res.setMoment(controlCheckAuditForm.getControlMoment());
 				res.setNewspaper(controlCheckAuditForm.getNewspaper());
 				res.setIsDraft(controlCheckAuditForm.getIsDraft());
 				
@@ -165,21 +165,21 @@ public class ControlCheckAuditService {
 		}
 
 		public ControlCheckAuditForm reconstructForm(
-				ControlCheckAudit controlCheckAudit) {
+				Cust controlCheckAudit) {
 			ControlCheckAuditForm res = new ControlCheckAuditForm();
 			res.setId(controlCheckAudit.getId());
 			res.setVersion(controlCheckAudit.getVersion());
-			res.setControlTitle(controlCheckAudit.getControlTitle());
-			res.setControlDescription(controlCheckAudit.getControlDescription());
+			res.setControlTitle(controlCheckAudit.getTitle());
+			res.setControlDescription(controlCheckAudit.getDescription());
 			res.setGauge(controlCheckAudit.getGauge());
-			res.setControlMoment(controlCheckAudit.getControlMoment());
+			res.setControlMoment(controlCheckAudit.getMoment());
 			res.setNewspaper(controlCheckAudit.getNewspaper());
 			res.setIsDraft(controlCheckAudit.getIsDraft());
 			return res;
 		}
 	
-	public Collection<ControlCheckAudit> SelectPublishedByNewspaper (Integer newspaperId){
-		Collection<ControlCheckAudit> res = this.controlCheckAuditRepository.findPublished(newspaperId);
+	public Collection<Cust> SelectPublishedByNewspaper (Integer newspaperId){
+		Collection<Cust> res = this.controlCheckAuditRepository.findPublished(newspaperId);
 		return res;
 	}
 	public void flush(){

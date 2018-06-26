@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import domain.Actor;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import domain.Customer;
 import domain.Newspaper;
 import domain.User;
@@ -47,7 +47,7 @@ public class ControlCheckAuditController extends AbstractController {
 			@RequestMapping(value = "/display", method = RequestMethod.GET)
 			public ModelAndView display(@RequestParam final int controlCheckAuditId, RedirectAttributes redir) {
 				ModelAndView result;
-				ControlCheckAudit controlCheckAudit;
+				Cust controlCheckAudit;
 				try{
 				Actor principal = this.actorService.findByPrincipal();
 				controlCheckAudit = this.controlCheckAuditService.findOne(controlCheckAuditId);

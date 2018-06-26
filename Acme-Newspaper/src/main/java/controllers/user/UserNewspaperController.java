@@ -20,7 +20,7 @@ import controllers.AbstractController;
 
 import domain.Advertisement;
 import domain.Article;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import domain.Newspaper;
 import domain.User;
 import forms.NewspaperForm;
@@ -99,7 +99,7 @@ public class UserNewspaperController extends AbstractController{
 			advertChoosen = this.newspaperService.findRandomAdvert(newspaper);
 			
 			articles = this.articleService.articlesOfNewspaper(newspaperId);
-			Collection<ControlCheckAudit> controlCheckAudits;
+			Collection<Cust> controlCheckAudits;
 			controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);	
 		
 

@@ -17,7 +17,7 @@ import controllers.AbstractController;
 
 import domain.Advertisement;
 import domain.Article;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
@@ -111,7 +111,7 @@ public class CustomerNewspaperController extends AbstractController{
 		}
 		
 		advertChoosen = this.newspaperService.findRandomAdvert(newspaper);
-		Collection<ControlCheckAudit> controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);
+		Collection<Cust> controlCheckAudits = this.controlCheckAuditService.SelectPublishedByNewspaper(newspaperId);
 
 		result = new ModelAndView("newspaper/display");
 		result.addObject("controlCheckAudits", controlCheckAudits);

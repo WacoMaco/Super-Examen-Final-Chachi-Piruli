@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import domain.Chirp;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import domain.Newspaper;
 import forms.ChirpForm;
 
@@ -67,7 +67,7 @@ public class ControlCheckAuditTest extends AbstractTest {
 	protected void templateControlCheck(String username, String title,String description, Integer gauge, java.util.Date testingData,Boolean isDraft,String newspaperId, Class<?> expected) {
 		Class<?> caught;
 		caught = null;
-		ControlCheckAudit res,saved;
+		Cust res,saved;
 		Newspaper newspaper = null;
 		try{
 			super.authenticate(username);
@@ -78,15 +78,15 @@ public class ControlCheckAuditTest extends AbstractTest {
 			}
 			
 			res = this.controlCheckAuditService.create();
-			res.setControlTitle(title);
-			res.setControlDescription(description);
-			res.setControlMoment(testingData);
+			res.setTitle(title);
+			res.setDescription(description);
+			res.setMoment(testingData);
 			res.setIsDraft(true);
 			res.setNewspaper(newspaper);
 			res.setGauge(gauge);
 			saved = this.controlCheckAuditService.save(res);
 			this.controlCheckAuditService.flush();
-			saved.setControlTitle("Changing the title");
+			saved.setTitle("Changing the title");
 			saved.setIsDraft(false);
 			this.controlCheckAuditService.save(saved);
 			this.controlCheckAuditService.flush();

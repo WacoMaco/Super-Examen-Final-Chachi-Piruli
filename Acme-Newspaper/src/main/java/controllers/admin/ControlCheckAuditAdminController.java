@@ -19,7 +19,7 @@ import services.NewspaperService;
 import controllers.AbstractController;
 import domain.Admin;
 import domain.Article;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import domain.Newspaper;
 import domain.User;
 import forms.ArticleForm;
@@ -49,7 +49,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		public ModelAndView list(String filter) {
 			ModelAndView result;
 			Admin principal = this.adminService.findByPrincipal();
-			Collection<ControlCheckAudit> controlCheckAudits = principal.getControlCheckAudits();
+			Collection<Cust> controlCheckAudits = principal.getCusts();
 			result = new ModelAndView("controlCheckAudit/list");
 			result.addObject("controlCheckAudits", controlCheckAudits);
 			result.addObject("principal", principal);
@@ -75,7 +75,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 		@RequestMapping(value = "/edit", method = RequestMethod.GET)
 		public ModelAndView edit(@RequestParam final int controlCheckAuditId, final RedirectAttributes redir) {
 			ModelAndView result;
-			ControlCheckAudit controlCheckAudit;
+			Cust controlCheckAudit;
 			ControlCheckAuditForm controlCheckAuditForm;
 			try {
 				Admin admin = this.adminService.findByPrincipal();
@@ -97,7 +97,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 				@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 				public ModelAndView save(final ControlCheckAuditForm controlCheckAuditForm, final BindingResult binding) {
 					ModelAndView result;
-					ControlCheckAudit controlCheckAudit = this.controlCheckAuditService.reconstruct(controlCheckAuditForm,binding);
+					Cust controlCheckAudit = this.controlCheckAuditService.reconstruct(controlCheckAuditForm,binding);
 					if (binding.hasErrors())
 						result = this.createEditModelAndView(controlCheckAuditForm);
 					else
@@ -116,7 +116,7 @@ public class ControlCheckAuditAdminController extends AbstractController {
 				public ModelAndView delete(final ControlCheckAuditForm controlCheckAuditForm, final BindingResult binding) {
 					ModelAndView result;
 						try {
-							ControlCheckAudit toDelete = this.controlCheckAuditService.findOne(controlCheckAuditForm.getId());
+							Cust toDelete = this.controlCheckAuditService.findOne(controlCheckAuditForm.getId());
 							this.controlCheckAuditService.delete(toDelete);
 							result = new ModelAndView("redirect:/controlCheckAudit/admin/list.do");
 						} catch (final Throwable oops) {

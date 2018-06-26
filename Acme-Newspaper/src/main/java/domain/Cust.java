@@ -23,42 +23,42 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-		@Index(columnList = "controlMoment, isDraft")
+		@Index(columnList = "moment, isDraft")
 	})
-public class ControlCheckAudit extends DomainEntity {
+public class Cust extends DomainEntity {
 	
-	private String ticker;
-	private String controlTitle;
-	private String controlDescription;
+	private String symbol;
+	private String title;
+	private String description;
 	private Integer gauge;
-	private Date controlMoment;
+	private Date moment;
 	private Boolean isDraft;
 	private Admin creator;
 	private Newspaper newspaper;
 	
 	@Column(unique=true)
 	@NotNull
-	public String getTicker() {
-		return ticker;
+	public String getSymbol() {
+		return symbol;
 	}
-	public void setTicker(String ticker) {
-		this.ticker = ticker;
-	}
-	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getControlTitle() {
-		return controlTitle;
-	}
-	public void setControlTitle(String controlTitle) {
-		this.controlTitle = controlTitle;
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
 	}
 	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getControlDescription() {
-		return controlDescription;
+	public String getTitle() {
+		return title;
 	}
-	public void setControlDescription(String controlDescription) {
-		this.controlDescription = controlDescription;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	@Range(min=1, max=3)
 	@NotNull
@@ -70,11 +70,11 @@ public class ControlCheckAudit extends DomainEntity {
 	}
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	public Date getControlMoment() {
-		return controlMoment;
+	public Date getMoment() {
+		return moment;
 	}
-	public void setControlMoment(Date controlMoment) {
-		this.controlMoment = controlMoment;
+	public void setMoment(Date moment) {
+		this.moment = moment;
 	}
 	public Boolean getIsDraft() {
 		return isDraft;

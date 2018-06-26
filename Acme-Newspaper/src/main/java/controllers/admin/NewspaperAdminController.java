@@ -18,7 +18,7 @@ import controllers.AbstractController;
 
 import domain.Advertisement;
 import domain.Article;
-import domain.ControlCheckAudit;
+import domain.Cust;
 import domain.Newspaper;
 import domain.Admin;
 
@@ -81,7 +81,7 @@ public class NewspaperAdminController extends AbstractController{
 					ModelAndView result;
 					Newspaper newspaper;
 					Collection<Article> articles;
-					Collection<ControlCheckAudit> controlCheckAudits;
+					Collection<Cust> controlCheckAudits;
 					Advertisement advertChoosen;
 					final Admin principal = this.adminService.findByPrincipal();
 					final String uri = "/admin";

@@ -156,10 +156,10 @@
 	</list>
 	</property>
 	
-	<property name="controlCheckAudits">
+	<property name="custs">
 	<list>
-	<ref bean="controlCheckAudit1"/>
-	<ref bean="controlCheckAudit2"/>
+	<ref bean="cust1"/>
+	<ref bean="cust2"/>
 	</list>	
 	</property>	
 	</bean>
@@ -192,10 +192,10 @@
 	</list>
 	</property>
 	
-	<property name="controlCheckAudits">
+	<property name="custs">
 	<list>
-	<ref bean="controlCheckAudit3"/>
-	<ref bean="controlCheckAudit4"/>
+	<ref bean="cust3"/>
+	<ref bean="cust4"/>
 	</list>	
 	</property>	
 	
@@ -575,10 +575,10 @@
 		</list>
 	</property>
 	
-	<property name="controlCheckAudit">
+	<property name="custs">
 	<list>
-	<ref bean="controlCheckAudit1"/>
-	<ref bean="controlCheckAudit3"/>
+	<ref bean="cust1"/>
+	<ref bean="cust3"/>
 	</list>	
 	</property>	
 
@@ -618,10 +618,10 @@
 			</list>
 	</property>
 	
-	<property name="controlCheckAudit">
+	<property name="custs">
 	<list>
-	<ref bean="controlCheckAudit2"/>
-	<ref bean="controlCheckAudit4"/>
+	<ref bean="cust2"/>
+	<ref bean="cust4"/>
 	</list>	
 	</property>	
 
@@ -659,7 +659,7 @@
 		</list>
 	</property>
 	
-		<property name="controlCheckAudit">
+		<property name="custs">
 	<list>
 	</list>	
 	</property>	
@@ -1641,12 +1641,12 @@
 
 <!-- Audit1 -->
 
-<bean class="domain.ControlCheckAudit" id="controlCheckAudit1">
-	<property name="ticker" value="1106-18" />
-	<property name="controlTitle" value="Audit 1" />
-	<property name="controlDescription" value="This is the audit 1"/>
+<bean class="domain.Cust" id="cust1">
+	<property name="symbol" value="1106-18" />
+	<property name="title" value="Audit 1" />
+	<property name="description" value="This is the audit 1"/>
 	<property name="gauge" value="1"/>	
-	<property name="controlMoment" value="2018/09/02 09:21"/>
+	<property name="moment" value="2018/09/02 09:21"/>
 	<property name="isDraft" value="false"/>	
 	
 	<property name="creator" ref="admin"/>
@@ -1655,10 +1655,10 @@
 
 <!-- Audit2 -->
 
-<bean class="domain.ControlCheckAudit" id="controlCheckAudit2">
-	<property name="ticker" value="1708-18" />
-	<property name="controlTitle" value="Audir 2" />
-	<property name="controlDescription" value="this is the audit 2"/>
+<bean class="domain.Cust" id="cust2">
+	<property name="symbol" value="1708-18" />
+	<property name="title" value="Audir 2" />
+	<property name="description" value="this is the audit 2"/>
 	<property name="gauge" value="2"/>	
 	<property name="isDraft" value="true"/>	
 	<property name="creator" ref="admin"/>
@@ -1668,10 +1668,10 @@
 	
 	<!-- Audit3 -->
 
-<bean class="domain.ControlCheckAudit" id="controlCheckAudit3">
-	<property name="ticker" value="1706-19" />
-	<property name="controlTitle" value="Audit 3" />
-	<property name="controlDescription" value="this is the audit 3"/>
+<bean class="domain.Cust" id="cust3">
+	<property name="symbol" value="1706-19" />
+	<property name="title" value="Audit 3" />
+	<property name="description" value="this is the audit 3"/>
 	<property name="gauge" value="3"/>	
 	<property name="isDraft" value="false"/>	
 	<property name="creator" ref="admin2"/>
@@ -1680,10 +1680,10 @@
 	
 	<!-- Audit4 -->
 
-<bean class="domain.ControlCheckAudit" id="controlCheckAudit4">
-	<property name="ticker" value="0308-18" />
-	<property name="controlTitle" value="Audit 2" />
-	<property name="controlDescription" value="this is the audit 2"/>
+<bean class="domain.Cust" id="cust4">
+	<property name="symbol" value="0308-18" />
+	<property name="title" value="Audit 2" />
+	<property name="description" value="this is the audit 2"/>
 	<property name="gauge" value="1"/>	
 	<property name="isDraft" value="true"/>	
 	<property name="creator" ref="admin2"/>

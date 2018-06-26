@@ -12,17 +12,17 @@ import javax.persistence.OneToMany;
 @Access(AccessType.PROPERTY)
 public class Admin extends Actor {
 	
-	private Collection<ControlCheckAudit> controlCheckAudits;
+	private Collection<Cust> custs;
 
 	
 	@OneToMany(mappedBy="creator")
-	public Collection<ControlCheckAudit> getControlCheckAudits() {
-		return controlCheckAudits;
+	public Collection<Cust> getCusts() {
+		return custs;
 	}
 
-	public void setControlCheckAudits(
-			Collection<ControlCheckAudit> controlCheckAudits) {
-		this.controlCheckAudits = controlCheckAudits;
+	public void setCusts(
+			Collection<Cust> custs) {
+		this.custs = custs;
 	}
 	
 	
