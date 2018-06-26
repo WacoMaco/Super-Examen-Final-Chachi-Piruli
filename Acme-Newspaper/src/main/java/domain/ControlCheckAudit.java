@@ -63,8 +63,8 @@ public class ControlCheckAudit extends DomainEntity {
 	public void setGauge(Integer gauge) {
 		this.gauge = gauge;
 	}
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getControlMoment() {
 		return controlMoment;
 	}

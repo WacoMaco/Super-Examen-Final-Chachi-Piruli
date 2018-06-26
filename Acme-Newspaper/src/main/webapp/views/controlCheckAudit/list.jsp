@@ -59,7 +59,7 @@
 </display:table>
 			
 <a href="controlCheckAudit/admin/create.do">
-			<spring:message code="article.create" /> </a>
+			<spring:message code="controlCheckAudit.create" /> </a>
 			
 <spring:message code="datatables.locale.lang" var="tableLang"/>
 <spring:message code="datatables.moment.format" var="tableFormatMoment"/>
