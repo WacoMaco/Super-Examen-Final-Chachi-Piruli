@@ -170,7 +170,7 @@ public class CustService {
 				Date now = new Date();
 				
 				if (custForm.getMoment() != null && custForm.getMoment().before(now)){
-					binding.rejectValue("controlMoment", "cust.invalid.moment");
+					binding.rejectValue("moment", "cust.invalid.moment");
 				}
 				
 				if (custForm.getNewspaper() == null && (custForm.getIsDraft() == false)){
